@@ -1,6 +1,28 @@
 <?php
 class Reactions
-{
+{static function getReactions(){
+    global $con;
+    $array = [];
+    $grqry = $con->prepare("SELECT id,name,email,message,date_added FROM reactions;");
+    if($grqry === false) {
+        prettyDump( mysqli_error($con) );
+    } else{
+        $grqry->bind_result($id,$name,$email,$message,$date_added);
+        if($grqry->execute()){
+            $grqry->store_result();
+            while($grqry->fetch()){
+                $array[] = [
+                    'id' => $id,
+                    'name' => $name,
+                    'email'=> $email
+                ];
+            }
+        }
+        $grqry->close();
+    }
+    return $array;
+}
+
     static function setReaction($postArray){
         global $con;
         $array = [];
@@ -44,27 +66,4 @@ class Reactions
         }
     }
     
-    static function getReactions(){
-        global $con;
-        $array = [];
-        $grqry = $con->prepare("SELECT id,name,email FROM reactions;");
-        if($grqry === false) {
-            prettyDump( mysqli_error($con) );
-        } else{
-            $grqry->bind_result($id,$name,$email);
-            if($grqry->execute()){
-                $grqry->store_result();
-                while($grqry->fetch()){
-                    $array[] = [
-                        'id' => $id,
-                        'name' => $name,
-                        'email'=> $email
-                    ];
-                }
-            }
-            $grqry->close();
-        }
-        return $array;
-    }
 }
-
