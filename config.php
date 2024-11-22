@@ -1,11 +1,10 @@
 <?php
 session_start();
 
- 
  $dbhost = "localhost";
  $dbuser = "root";
- $dbpass = "root";
- $dbname = "";
+ $dbpass = "";
+ $dbname = "youtube-test";
 
 $con = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
