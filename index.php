@@ -5,7 +5,7 @@ include("reactions.php");
 $message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $postArray = [
-        'username' => $_POST['username'],
+        'naam' => $_POST['naam'],
         'email' => $_POST['email'],
         'comment' => $_POST['comment']
     ];
@@ -26,9 +26,10 @@ if(!empty($_POST)){
 
     //dit is een voorbeeld array.  Deze waardes moeten erin staan.
     $postArray = [
-        'name' => $_POST,
-        'email' => $_POST,
-        'message' => $_POST
+        'name' => $_POST['name'],
+        'email' => $_POST['email'],
+        'message' => $_POST['message']
+
     ];
 
     $setReaction = Reactions::setReaction($postArray);
@@ -43,9 +44,7 @@ if(!empty($_POST)){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="sytlesheet" href="assets/css/style.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Youtube remake</title>
 </head>
 <body>
@@ -56,8 +55,7 @@ if(!empty($_POST)){
     <p>Maak hier je eigen pagina van aan de hand van de opdracht</p>
 
 
-
-    <form action="reactions.php" method="POST">
+    <form action="index.php" method="POST">
     <div id="naam">  
        naam: <input type="text" name="naam" value="" placeholder="Username">
     </div>

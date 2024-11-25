@@ -14,7 +14,9 @@ class Reactions
                 $array[] = [
                     'id' => $id,
                     'name' => $name,
-                    'email'=> $email
+                    'email'=> $email,
+                    'date_added' => $date_added,
+                    'message' => $message
                 ];
             }
         }
@@ -47,7 +49,7 @@ class Reactions
 
             if (empty($array['error'])) {
 
-                $srqry = $con->prepare("INSERT INTO reactions (name,email,message) VALUES (?,?,?);");
+                $srqry = $con->prepare("INSERT INTO reactions (name,email,message,) VALUES (?,?,?);");
                 if ($srqry === false) {
                     prettyDump( mysqli_error($con) );
                 }
